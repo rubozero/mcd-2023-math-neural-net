@@ -23,14 +23,10 @@ Las redes neuronales se utilizan en detección de fraudes en varios dominios, co
 Muchas plataformas en línea utilizan redes neuronales para construir sistemas de recomendación personal. Esos sistemas analizan el comportamiento y preferencias del usuario para sugerir productos relevantes, películas, música, o artículos.
 
 # Esquema general de las matemáticas involucradas en redes neuronales
-![Diagrama de flujo matematicas en redes neuronales](redes_neuronales_math.drawio.png)
+![Diagrama de flujo matematicas en redes neuronales](../redes_neuronales_math.drawio.png)
 
-# Problema de interés
-![neural machine translation](https://www.transifex.com/wp-content/uploads/2022/08/Neural-Machine-Translation-featured.png)
-Me interesa poder realizar traducciones por medio de redes neuronales.
-En primera instancia elegiría el procesamiento de texto en un contexto en específico para que las traducciones sean coherentes y sean de utilidad.
-
-- El lenguaje de traducción sería de inglés a español.
-- El contexto sería desarrollo de software.
-
-La justificación del por qué traducciones es porque la gran mayoría de la documentación relacionada al desarrollo de software está en inglés; mientras que la información que se encuentra en español es limitada o desactualizada. A pesar de que es cada vez más accesible la traducción por medio de varias herramientas o incluso personas y/o equipos se encargan de esa tarea, aún se requiere un esfuerzo adicional para que las traducciones sean precisas.
+# NLP (Natural Language Processing)
+![neural machine translation](https://www.analyticsinsight.net/wp-content/uploads/2021/06/NLP-Engineer.jpg)
+El Procesamiento de Lenguaje Natural (NLP) es el área que más me interesaría para poder explorar para el trabajo con redes neuronales. En lo particular me llama la atención qué tan variadas pueden ser las aplicaciones de ésta área y sobre todo el gran valor que aportan a los problemas cotidianos de nuestra sociedad. 
+![chatbot](https://images.ctfassets.net/63bmaubptoky/63Vj4F22SZPNj8q8jOtGvA/d22eec0e2917302c65fe1f0f3b6578df/que-es-un-chatbot-MX-Capterra-header.png)
+El desarrollo de chatbots me parecería un buen punto de partida para poder comprender los conceptos, técnicas y procesos relacionados al NLP.
