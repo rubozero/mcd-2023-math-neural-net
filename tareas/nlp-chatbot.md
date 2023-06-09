@@ -1,0 +1,74 @@
+# NLP - Chatbots
+![chatbot_index](https://nordvpn.com/wp-content/uploads/blog-social-what-is-chatbot-1200x628-1.png)
+
+## Los pasos claves para el NLP son los siguientes
+
+- Tokenización
+  - Los conceptos matemáticos y algoritmos pueden utilizarse durante el proceso de tokenización
+    - Expresiones Regulares
+    - Autómatas de Estados Finitos(AEF)
+    - Estructura de Datos Trie
+    - Reglas Específicas del Idioma
+- Creación del Vocabulario
+  - No hay una fórmula específica, pero a cada token se le asigna un índice o ID único 
+- Incrustaciones de Palabras (Word Embeddings)
+  - Se puede utilizar el modelo skip-gram, que es una técnica de aprendizaje no supervisado utilizada para aprender representaciones vectoriales de palabras en NLP, basado en la predicción de palabras de contexto dadas palabras objetivo
+  - Para el modelo skip-gram se utiliza el la función softmax: 
+      - $\text{softmax}(x_i) = \frac{e^{x_i}}{\sum_{j=1}^{N} e^{x_j}} \quad \text{for } i = 1, 2, \ldots, N$     
+      -  Donde: $\text{softmax}(x_i)$ representa la función softmax aplicada al i-ésimo elemento del vector de entrada x.
+      - $e^{x_i}$: Esta es la función exponencial aplicada al i-ésimo elemento de x. El símbolo ^ denota la operación de exponente.
+      - $\sum_{j=1}^{N}$: Esto representa el operador de suma. Se suman los valores para j desde 1 hasta N, donde N es el número total de elementos en el vector x.
+      - $e^{x_j}$: Esta es la función exponencial aplicada al j-ésimo elemento de x dentro de la suma.
+La expresión completa se divide por la suma de los valores exponenciales, representada como $\sum_{j=1}^{N} e^{x_j}$.
+- Redes Neuronales
+  - En este caso se utiliza la red neuronal Transformer, descrita de la siguiente manera
+    - Self-Attention (Auto-atención):
+      - La atención se calcula mediante el producto escalar entre los vectores de consulta, clave y valor.
+      - Sea Q la matriz de consultas, K la matriz de claves y V la matriz de valores
+      - $\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$
+      - Donde $d_k$ es la dimensión de los vectores de consulta y claves, y $^T$ representa la transposición de la matriz.
+    - Capas de Feed-Forward usando transformación lineal:
+      - La transformación lineal se realiza mediante una multiplicación de matrices y una adición de un vector de sesgo
+      - Sea $X$ la matriz de entrada, $W_1$ la matriz de pesos y $b_1$ el vector de sesgo
+      - $\text{Linear}(X, W_1, b_1) = XW_1 + b_1$
+    - Función de activación ReLU (Rectified Linear Unit):
+      -  La función de activación ReLU se aplica elemento a elemento a la salida de la transformación lineal
+      -  $\text{ReLU}(X) = \max(0, X)$
+    - Conexiones Residuales (Adición de la salida de una subcapa a la entrada):
+      - Las conexiones residuales se utilizan para agregar la salida de una subcapa a la entrada original
+      - $\text{Residual}(X, \text{Sublayer}(X)) = X + \text{Sublayer}(X)$
+      - Donde $X$ es la entrada original y $\text{Sublayer}(X)$ es la salida de la subcapa
+    - Normalización por Capa
+      - La normalización por capa (Layer Normalization) se utiliza para normalizar la salida de cada capa del modelo
+      - $\text{LayerNorm}(X) = \frac{X - \mu}{\sqrt{\sigma^2 + \epsilon}} \odot \gamma + \beta$
+      - Donde $X$ es la entrada a normalizar, $\mu$ es la media de $X$, $\sigma$ es la desviación estándar de $X$, $\epsilon$ es una pequeña constante para evitar la división por cero, $\odot$ representa la multiplicación elemento a elemento, y $\gamma$ y $\beta$ son parámetros de escala y sesgo que se aprenden durante el entrenamiento
+- Optimización
+  - Función de pérdida
+    - Entropía cruzada (Cross-Entropy)
+      - $L(y, \hat{y}) = -\sum_{i=1}^{C} y_i \log(\hat{y}_i)$
+      - Donde $y$ son los valores reales (etiquetas) y $\hat{y}$ son las predicciones del modelo para cada clase $i$, y $C$ es el número total de clases
+  - Pérdida cuadrática (Mean Squared Error)
+    - $L(y, \hat{y}) = \frac{1}{N} \sum_{i=1}^{N} (y_i - \hat{y}_i)^2$
+    - Donde y son los valores reales y $\hat{y}$ son las predicciones del modelo, y $N$ es el número total de muestras
+  - Algoritmo de optimización
+    - Descenso del gradiente estocástico (Stochastic Gradient Descent, SGD)
+    - $\theta_{t+1} = \theta_t - \eta \cdot \nabla_{\theta_t} L$
+    - Donde $\theta$ representa los parámetros del modelo, $\eta$ es la tasa de aprendizaje y $\nabla_{\theta_t} L$ es el gradiente de la función de pérdida con respecto a los parámetros en la iteración %t%
+  - Regularización
+    - Uno de los métodos de regularización más comunes es la regularización L2 (también conocida como regresión ridge)
+    - $L_{\text{reg}} = \lambda \sum_{i=1}^{N} \theta_i^2$
+    - Donde N es el número total de parámetros del modelo y $\lambda$ es el coeficiente de regularización
+- Métricas de Evaluación
+  - Precisión
+    - Se utiliza para medir la proporción de instancias clasificadas correctamente como positivas (verdaderos positivos) respecto a todas las instancias clasificadas como positivas (verdaderos positivos más falsos positivos)
+    - $\text{Precision} = \frac{\text{Verdaderos Positivos}}{\text{Verdaderos Positivos} + \text{Falsos Positivos}}$
+  - Cobertura (Recall)
+    - Se utiliza para medir la proporción de instancias positivas clasificadas correctamente (verdaderos positivos) respecto a todas las instancias positivas existentes (verdaderos positivos más falsos negativos)
+    - $\text{Recall} = \frac{\text{Verdaderos Positivos}}{\text{Verdaderos Positivos} + \text{Falsos Negativos}}$
+  - F1-Score
+    - Es una medida combinada de precisión y cobertura. Proporciona una medida equilibrada entre ambas métricas
+    - $\text{F1-Score} = 2 \times \frac{\text{Precisión} \times \text{Cobertura}}{\text{Precisión} + \text{Cobertura}}$
+  - Exactitud (Accuracy)
+    - Se utiliza para medir la proporción de instancias clasificadas correctamente (verdaderos positivos y verdaderos negativos) respecto a todas las instancias
+    - $\text{Accuracy} = \frac{\text{Verdaderos Positivos} + \text{Verdaderos Negativos}}{\text{Total de Instancias}}$
+
